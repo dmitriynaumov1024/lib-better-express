@@ -11,5 +11,6 @@ export {
 export {
     errorCatcher,
     crossOrigin,
-    staticServer
+    staticServer,
+    bodyParser
 } from "./middleware.js"

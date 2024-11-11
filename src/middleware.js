@@ -38,3 +38,19 @@ export function crossOrigin ({ origins, methods, headers }) {
 export function staticServer (...options) {
     return express.static(...options)
 }
+
+// various body parsers provided by express
+export const bodyParser = {
+    json (options) {
+        return express.json(options)
+    },
+    text (options) {
+        return express.text(options)
+    },
+    urlencoded (options) {
+        return express.urlencoded(options)
+    },
+    raw (options) {
+        return express.raw(options)
+    }
+}
