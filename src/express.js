@@ -9,7 +9,7 @@ function catchErrors (func) {
 
     return function (req, res, next, ...rest) {
         let promise = func(req, res, next, ...rest)
-        if (promise?.catch) promise.catch(err => next(err))
+        if (promise instanceof Promise) promise.catch(err => next(err))
     }
 }
 
