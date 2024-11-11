@@ -98,6 +98,11 @@ class Application
         }
     }
 
+    // use error catcher
+    catch (catcher) {
+        return this.app.use(catcher)
+    }
+
     subpath (path) {
         return new SubpathRouter(this, path)
     }
