@@ -9,5 +9,7 @@ export {
 } from "./server.js"
 
 export {
-    errorCatcher
+    errorCatcher,
+    crossOrigin,
+    staticServer
 } from "./middleware.js"
