@@ -1,0 +1,12 @@
+{
+    "name": "better-express",
+    "author": "naumov1024",
+    "private": true,
+    "version": "0.1.0",
+    "type": "module",
+    "main": "src/index.js",
+    "dependencies": {
+        "express": "^4.18.2",
+        "ws": "^8.18.0"
+    }
+}
