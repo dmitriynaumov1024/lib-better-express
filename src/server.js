@@ -14,10 +14,6 @@ export function createServer (options) {
         serverOptions.key = fs.readFileSync(options.key)
         serverOptions.cert = fs.readFileSync(options.cert)
         server = https.createServer(serverOptions, express.app)
-        express.app.use((request, response, next)=> {
-            if (request.secure) next()
-            else response.redirect(`https://${request.hostname}${request.originalUrl}`)
-        })
     }
     else {
         server = http.createServer(serverOptions, express.app)

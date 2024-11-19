@@ -19,16 +19,21 @@ export function crossOrigin ({ origins, methods, headers }) {
     methods ??= ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"]
     if (methods instanceof Array) methods = methods.join(", ")
     return async function (request, response, next) {
-        let allowed = false
         let reqOrigin = request.get("origin")
-        if (origins instanceof RegExp) allowed = origins.test(reqOrigin)
-        else if (origins instanceof Array) allowed = origins.find(r => r == reqOrigin)
-        else if (origins == "*") allowed = true
-        if (allowed) {
-            response.header("Access-Control-Allow-Origin", reqOrigin)
-            response.header("Access-Control-Allow-Headers", headers)
-            response.header("Access-Control-Expose-Headers", headers)
-            response.header("Access-Control-Allow-Methods", methods)
+        if (reqOrigin) {
+            let allowed = false
+            if (origins instanceof RegExp) allowed = origins.test(reqOrigin)
+            else if (origins instanceof Array) allowed = origins.find(r => r == reqOrigin)
+            else if (origins == "*") allowed = true
+            if (allowed) {
+                response.header("Access-Control-Allow-Origin", reqOrigin)
+                response.header("Access-Control-Allow-Headers", headers)
+                response.header("Access-Control-Expose-Headers", headers)
+                response.header("Access-Control-Allow-Methods", methods)
+            }
+        }
+        else {
+            // do nothing
         }
         await next()
     }
